@@ -106,8 +106,8 @@ Since Windows does not support cron jobs, you can use Task Scheduler to run the 
 
    - Click "New".
    - Set "Action" to "Start a program".
-   - In the "Program/script" field, enter the path to your Python executable (e.g., `C:\Python39\python.exe`).
-   - In the "Add arguments" field, enter the path to your script (e.g., `C:\Users\YourUsername\Git_Projects\my-ai-proxy\update_number.py`).
+   - In the "Program/script" field, enter the path to your Python executable (e.g., `"C:\Users\YourUsername\my-ai-proxy\venv\Scripts\python.exe"`).
+   - In the "Add arguments" field, enter the path to your script (e.g., `C:\Users\YourUsername\my-ai-proxy\update_number.py`).
    - Click "OK".
 
 6. **Conditions Tab**:
