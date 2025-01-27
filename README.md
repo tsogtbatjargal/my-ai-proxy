@@ -76,6 +76,19 @@ If you prefer to use LLM-based commit message generation, you need to set an env
 ```bash
 $env:FANCY_JOB_USE_LLM="true"; python update_number.py
 ```
+OR
+
+2. **Create a Batch File**:
+Create a new file named run_script.bat in your project directory.
+Add the following content to the batch file:
+```bash
+REM filepath: /c:/Users/YourUsername/my-ai-proxy/run_script.bat
+@echo off
+set FANCY_JOB_USE_LLM=true
+call C:\Users\YourUsername/my-ai-proxy\venv\Scripts\activate.bat
+python C:\Users\YourUsername/my-ai-proxy\update_number.py
+```
+
 
 ### Setting Up a Scheduled Task on Windows
 
@@ -106,8 +119,7 @@ Since Windows does not support cron jobs, you can use Task Scheduler to run the 
 
    - Click "New".
    - Set "Action" to "Start a program".
-   - In the "Program/script" field, enter the path to your Python executable (e.g., `"C:\Users\YourUsername\my-ai-proxy\venv\Scripts\python.exe"`).
-   - In the "Add arguments" field, enter the path to your script (e.g., `C:\Users\YourUsername\my-ai-proxy\update_number.py`).
+   - In the "Program/script" field, enter the path to the batch file (e.g., `C:\Users\YourUsername\my-ai-proxy\run_script.bat`). OR you can use powershell and call that line of code.
    - Click "OK".
 
 6. **Conditions Tab**:
