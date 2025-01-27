@@ -1,22 +1,19 @@
-#!/usr/bin/env python3
 import os
 import random
 import subprocess
 from datetime import datetime
+import platform
 
 script_dir = os.path.dirname(os.path.abspath(__file__))
 os.chdir(script_dir)
-
 
 def read_number():
     with open("number.txt", "r") as f:
         return int(f.read().strip())
 
-
 def write_number(num):
     with open("number.txt", "w") as f:
         f.write(str(num))
-
 
 def generate_random_commit_message():
     from transformers import pipeline
@@ -52,7 +49,6 @@ def generate_random_commit_message():
     else:
         raise ValueError(f"Unexpected generated text {text}")
 
-
 def git_commit():
     # Stage the changes
     subprocess.run(["git", "add", "number.txt"])
@@ -64,7 +60,6 @@ def git_commit():
         commit_message = f"Update number: {date}"
     subprocess.run(["git", "commit", "-m", commit_message])
 
-
 def git_push():
     # Push the committed changes to GitHub
     result = subprocess.run(["git", "push"], capture_output=True, text=True)
@@ -74,8 +69,11 @@ def git_push():
         print("Error pushing to GitHub:")
         print(result.stderr)
 
-
 def update_cron_with_random_time():
+    if platform.system() == "Windows":
+        print("Cron job update is not supported on Windows.")
+        return
+
     # Generate random hour (0-23) and minute (0-59)
     random_hour = random.randint(0, 23)
     random_minute = random.randint(0, 59)
@@ -107,7 +105,6 @@ def update_cron_with_random_time():
 
     print(f"Cron job updated to run at {random_hour}:{random_minute} tomorrow.")
 
-
 def main():
     try:
         current_number = read_number()
@@ -119,7 +116,6 @@ def main():
     except Exception as e:
         print(f"Error: {str(e)}")
         exit(1)
-
 
 if __name__ == "__main__":
     main()
